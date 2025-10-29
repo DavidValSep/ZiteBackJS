@@ -1,0 +1,29 @@
+{
+  "name": "ziteback-js",
+  "version": "5.0.3",
+  "description": "Revolutionary intelligent web cloning system with Puppeteer - Desktop Edition",
+  "main": "src/electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build:css": "npx tailwindcss -i ./src/renderer/styles/input.css -o ./src/renderer/styles/output.css --minify",
+    "watch:css": "npx tailwindcss -i ./src/renderer/styles/input.css -o ./src/renderer/styles/output.css --watch",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "web-cloning",
+    "puppeteer",
+    "backup",
+    "electron",
+    "desktop"
+  ],
+  "author": "DavidValSep",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.5.0",
+    "electron": "^27.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
+  }
+}

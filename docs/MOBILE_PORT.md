@@ -178,7 +178,7 @@ const Home: React.FC = () => {
     <IonContent>
       <IonInput 
         value={url}
-        onIonChange={e => setUrl(e.detail.value!)}
+        onIonChange={e => setUrl(e.detail.value || '')}
         placeholder="Enter URL"
       />
       <IonButton onClick={handleClone}>Clone</IonButton>

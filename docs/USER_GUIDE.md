@@ -159,7 +159,7 @@ Body Size: 45231 bytes
 3. Browser will be closed
 4. Partial results may remain in output directory
 
-## Tips and Best practices
+## Tips and best practices
 
 ### URL Input
 - Always include protocol (`https://` or `http://`)

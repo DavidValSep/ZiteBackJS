@@ -1,0 +1,93 @@
+{
+  "name": "zitebackjs",
+  "version": "5.0.4",
+  "description": "Sistema de descarga de sitios web que se renderizan dinámicamente al DOM (React, Vue, Angular, SPA). Captura contenido real renderizado, no código fuente. Detecta automáticamente errores CDN reales, registra estadísticas y genera estructura CDN personalizada. Incluye respaldos inteligentes, análisis de fallos y construcción de CDN optimizado basado en datos reales de sitios procesados.",
+  "main": "ziteback.js",
+  "bin": {
+    "zb": "./ziteback.js",
+    "ziteback": "./ziteback.js"
+  },
+  "keywords": [
+    "web-scraping",
+    "website-cloning", 
+    "web-backup",
+    "puppeteer",
+    "javascript-rendering",
+    "spa-scraping",
+    "react-scraping",
+    "vue-scraping",
+    "angular-scraping",
+    "web-archiving",
+    "sitemap-generator",
+    "offline-website",
+    "web-crawler",
+    "dynamic-content",
+    "nodejs-scraper",
+    "video-backgrounds",
+    "youtube-embed",
+    "background-images",
+    "antivirus-safe",
+    "jquery-ytplayer",
+    "video-processing",
+    "iframe-embed"
+  ],
+  "scripts": {
+    "start": "node ziteback.js",
+    "page": "node ziteback.js --page",
+    "site": "node ziteback.js --site",
+    "help": "node ziteback.js --help",
+    "version": "node ziteback.js --version",
+    "author": "node ziteback.js --author",
+    "check": "node check-requirements.js",
+    "test": "node check-requirements.js",
+    "install-zb": "node install-zb.js",
+    "detect-cdn": "node detector-cdn-automatico.js",
+    "setup-email": "node setup-email.js",
+    "setup-complete": "node setup-completo.js",
+    "test-email": "node test-sendgrid-real.js",
+    "postinstall": "echo '💡 Para configurar ZiteBackJS: npm run setup-complete'"
+  },
+  "author": {
+    "name": "DavidValSep",
+    "email": "davidvalsep@gmail.com",
+    "url": "https://susitio.cl"
+  },
+  "contributors": [
+    {
+      "name": "SuSitio Team",
+      "email": "info@susitio.cl",
+      "url": "https://susitio.cl"
+    }
+  ],
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zitebackjs/zitebackjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zitebackjs/zitebackjs/issues",
+    "email": "info@susitio.cl"
+  },
+  "homepage": "https://github.com/zitebackjs/zitebackjs#readme",
+  "os": [
+    "win32",
+    "darwin", 
+    "linux"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.3",
+    "axios": "^1.12.2",
+    "dotenv": "^16.4.5",
+    "nodemailer": "^7.0.10",
+    "puppeteer": "^24.22.3"
+  }
+}

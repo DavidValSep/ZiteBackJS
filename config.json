@@ -1,0 +1,95 @@
+{
+  "version": "5.0.4",
+  "project": {
+    "name": "ZiteBackJS",
+    "description": "Sistema de clonado web con notificaciones inteligentes",
+    "author": "DavidValSep",
+    "email": "davidvalsep@gmail.com",
+    "website": "https://susitio.cl",
+    "support": "info@susitio.cl",
+    "whatsapp": "+56 9 3962 0636"
+  },
+  "system": {
+    "defaultLanguage": "es",
+    "charset": "utf-8",
+    "defaultWaitTime": 3,
+    "maxTimeout": 180000,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  },
+  "directories": {
+    "sites": "./sites",
+    "downloads": "./downloads",
+    "logs": "./logs",
+    "temp": "./temp",
+    "archive": "./archive"
+  },
+  "features": {
+    "emailNotifications": true,
+    "multiLanguage": true,
+    "urlNormalization": true,
+    "dataStyleDetection": true,
+    "fontDetection": true,
+    "cdnFallback": true,
+    "videoProcessing": true,
+    "resourceOptimization": true
+  },
+  "crawling": {
+    "maxPages": 50,
+    "respectRobots": true,
+    "crawlDelay": 1000,
+    "maxConcurrent": 5,
+    "followExternalLinks": false
+  },
+  "resources": {
+    "downloadImages": true,
+    "downloadCSS": true,
+    "downloadJS": true,
+    "downloadFonts": true,
+    "downloadVideos": false,
+    "downloadDocuments": false,
+    "maxFileSize": "50MB",
+    "excludeExtensions": [".exe", ".zip", ".rar", ".7z", ".dmg", ".pkg"]
+  },
+  "cdn": {
+    "personalCdn": "https://cdn.susitio.cl",
+    "fallbackCdns": [
+      "https://cdnjs.cloudflare.com",
+      "https://cdn.jsdelivr.net",
+      "https://unpkg.com"
+    ],
+    "excludeCdns": [
+      "fonts.googleapis.com",
+      "kit.fontawesome.com",
+      "use.typekit.net"
+    ]
+  },
+  "logging": {
+    "level": "info",
+    "rotateSize": "10MB",
+    "keepFiles": 7,
+    "logErrors": true,
+    "logSuccess": true,
+    "logProgress": true
+  },
+  "performance": {
+    "enableCache": true,
+    "cacheMaxAge": 3600,
+    "compressionLevel": 6,
+    "parallelDownloads": 5,
+    "retryAttempts": 3,
+    "retryDelay": 2000
+  },
+  "security": {
+    "validateSSL": false,
+    "maxRedirects": 5,
+    "allowedProtocols": ["http:", "https:"],
+    "blockDangerousFiles": true,
+    "scanForMalware": false
+  },
+  "experimental": {
+    "aiContentDetection": false,
+    "smartResourcePriority": true,
+    "predictivePreloading": false,
+    "realTimeCdnAnalysis": true
+  }
+}

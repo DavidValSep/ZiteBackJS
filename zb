@@ -1,0 +1,38 @@
+#!/bin/bash
+# ZiteBackJS - Comando Corto 'zb' para Unix/Linux/macOS
+# Permite usar: zb -u https://example.com -w=5
+
+# Obtener el directorio del script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Buscar ziteback.js en el directorio del script
+if [ -f "$SCRIPT_DIR/ziteback.js" ]; then
+    node "$SCRIPT_DIR/ziteback.js" "$@"
+    exit $?
+fi
+
+# Verificar si Node.js está instalado
+if ! command -v node &> /dev/null; then
+    echo "❌ Error: Node.js no encontrado. Instalar desde https://nodejs.org/"
+    exit 1
+fi
+
+# Buscar ziteback.js en PATH (instalación global)
+if command -v ziteback &> /dev/null; then
+    ziteback "$@"
+    exit $?
+fi
+
+# Último intento: buscar en directorio común de npm global
+NPM_PREFIX=$(npm config get prefix 2>/dev/null)
+if [ -n "$NPM_PREFIX" ] && [ -f "$NPM_PREFIX/lib/node_modules/zitebackjs/ziteback.js" ]; then
+    node "$NPM_PREFIX/lib/node_modules/zitebackjs/ziteback.js" "$@"
+    exit $?
+fi
+
+# Si llegamos aquí, no se encontró ziteback.js
+echo "❌ Error: ziteback.js no encontrado"
+echo "💡 Tip: Ejecutar desde el directorio de ZiteBackJS o instalar globalmente:"
+echo "   npm install -g ."
+echo "   O usar: node ziteback.js $@"
+exit 1

@@ -1,0 +1,54 @@
+[
+  {
+    "fecha": "2025-10-28T20:04:04.045Z",
+    "servicio": "phpmailer",
+    "tipo": "descarga_completada",
+    "destinatario": "info@susitio.cl",
+    "datos": {
+      "siteName": "Sitio Test",
+      "totalRecursos": 150,
+      "totalPaginas": 5,
+      "duracionMinutos": 3
+    },
+    "error": "nodemailer.createTransporter is not a function"
+  },
+  {
+    "fecha": "2025-10-28T20:04:40.756Z",
+    "servicio": "phpmailer",
+    "tipo": "descarga_completada",
+    "destinatario": "info@susitio.cl",
+    "datos": {
+      "siteName": "Sitio Test",
+      "totalRecursos": 150,
+      "totalPaginas": 5,
+      "duracionMinutos": 3
+    },
+    "error": "getaddrinfo ENOTFOUND si"
+  },
+  {
+    "fecha": "2025-10-28T20:05:48.475Z",
+    "servicio": "phpmailer",
+    "tipo": "descarga_completada",
+    "destinatario": "info@susitio.cl",
+    "datos": {
+      "siteName": "Sitio Test",
+      "totalRecursos": 150,
+      "totalPaginas": 5,
+      "duracionMinutos": 3
+    },
+    "error": "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-7a414087cdbsm12650469b3a.64 - gsmtp"
+  },
+  {
+    "fecha": "2025-10-28T20:07:07.183Z",
+    "servicio": "phpmailer",
+    "tipo": "descarga_completada",
+    "destinatario": "info@susitio.cl",
+    "datos": {
+      "siteName": "Sitio Test",
+      "totalRecursos": 150,
+      "totalPaginas": 5,
+      "duracionMinutos": 3
+    },
+    "error": "Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-29498d40de4sm128273445ad.77 - gsmtp"
+  }
+]

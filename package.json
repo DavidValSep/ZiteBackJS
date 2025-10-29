@@ -8,7 +8,7 @@
     "dev": "electron . --dev",
     "build:css": "npx tailwindcss -i ./src/renderer/styles/input.css -o ./src/renderer/styles/output.css --minify",
     "watch:css": "npx tailwindcss -i ./src/renderer/styles/input.css -o ./src/renderer/styles/output.css --watch",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "node test/validate-core.js"
   },
   "keywords": [
     "web-cloning",

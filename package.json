@@ -1,0 +1,30 @@
+{
+  "name": "zitebackjs",
+  "version": "5.0.3",
+  "description": "Sistema revolucionario de clonado web inteligente con Puppeteer y GUI Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:css": "tailwindcss -i ./src/gui.css -o ./dist/gui.css --watch",
+    "dev": "concurrently \"npm run build:css\" \"electron .\"",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "web-scraping",
+    "puppeteer",
+    "electron",
+    "backup",
+    "clone"
+  ],
+  "author": "DavidValSep",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^27.0.0",
+    "puppeteer": "^21.5.0",
+    "archiver": "^6.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.5",
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZiteBackJS v5.0.3 - Sistema de Clonado Web Inteligente</title>
+    <link rel="stylesheet" href="./dist/gui.css">
+</head>
+<body class="min-h-screen">
+    <!-- Container Principal -->
+    <div class="main-container">
+        
+        <!-- Header -->
+        <header class="header">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    ZiteBackJS
+                </h1>
+                <span class="version-badge">v5.0.3</span>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <!-- Fecha y Hora -->
+                <div id="dateTime" class="text-sm text-gray-600 dark:text-gray-400 hidden md:block">
+                </div>
+                
+                <!-- Toggle Tema -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm">🌞</span>
+                    <label class="theme-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="text-sm">🌙</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sección Principal -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Columna Izquierda - Controles -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <!-- Card de URL Input -->
+                <div class="card">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                        URL del Sitio Web
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <input 
+                            type="url" 
+                            id="urlInput" 
+                            class="input-text" 
+                            placeholder="https://ejemplo.com"
+                            aria-label="URL del sitio web a clonar"
+                        >
+                        
+                        <div class="flex space-x-3">
+                            <button 
+                                id="downloadBtn" 
+                                class="btn-primary flex-1 flex items-center justify-center space-x-2"
+                            >
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                                <span>Clonar Sitio Web</span>
+                            </button>
+                            
+                            <button 
+                                id="openFolderBtn" 
+                                class="btn-secondary hidden"
+                                title="Abrir carpeta de descargas"
+                            >
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Progress Bar -->
+                        <div id="progressBar" class="progress-bar" style="display: none;">
+                            <div class="progress-bar-fill w-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card de Flags/Opciones -->
+                <div class="card">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                        Opciones de Clonado
+                    </h2>
+                    
+                    <div class="flags-grid">
+                        <!-- Flag: Modo Headless -->
+                        <div class="flag-item">
+                            <input 
+                                type="checkbox" 
+                                id="flagHeadless" 
+                                class="flag-checkbox checkbox-custom" 
+                                data-flag="headless"
+                                checked
+                            >
+                            <label for="flagHeadless" class="cursor-pointer flex-1">
+                                <div class="font-medium">Modo Headless</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Navegador sin interfaz</div>
+                            </label>
+                        </div>
+
+                        <!-- Flag: Descargar Recursos -->
+                        <div class="flag-item">
+                            <input 
+                                type="checkbox" 
+                                id="flagResources" 
+                                class="flag-checkbox checkbox-custom" 
+                                data-flag="downloadResources"
+                                checked
+                            >
+                            <label for="flagResources" class="cursor-pointer flex-1">
+                                <div class="font-medium">Descargar Recursos</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">CSS, JS, imágenes</div>
+                            </label>
+                        </div>
+
+                        <!-- Flag: Screenshot -->
+                        <div class="flag-item">
+                            <input 
+                                type="checkbox" 
+                                id="flagScreenshot" 
+                                class="flag-checkbox checkbox-custom" 
+                                data-flag="screenshot"
+                                checked
+                            >
+                            <label for="flagScreenshot" class="cursor-pointer flex-1">
+                                <div class="font-medium">Captura de Pantalla</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Full page screenshot</div>
+                            </label>
+                        </div>
+
+                        <!-- Más flags pueden agregarse aquí -->
+                    </div>
+                </div>
+
+                <!-- Card de Acciones Adicionales -->
+                <div class="card">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                        Gestión de Archivos
+                    </h2>
+                    
+                    <div class="flex space-x-3">
+                        <button 
+                            id="deleteTempBtn" 
+                            class="btn-secondary flex items-center space-x-2"
+                            disabled
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                            <span>Eliminar Carpeta Temporal</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha - Logs -->
+            <div class="lg:col-span-1">
+                <div class="card sticky top-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Logs Dinámicos
+                        </h2>
+                        
+                        <button 
+                            id="clearLogsBtn" 
+                            class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+                            title="Limpiar logs"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div id="logsContainer" class="log-container">
+                        <!-- Los logs se insertarán dinámicamente aquí -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-8 pt-6 border-t-2 border-gray-200 dark:border-gray-700 text-center text-sm text-gray-600 dark:text-gray-400">
+            <p>
+                ZiteBackJS v5.0.3 - Sistema revolucionario de clonado web inteligente con Puppeteer
+            </p>
+            <p class="mt-2">
+                🚀 Ideal para sitios SPA/React/Vue/Angular | 🌍 Multilenguaje | ⚡ Procesamiento universal de URLs
+            </p>
+            <p class="mt-2 text-xs">
+                Desarrollado con 
+                <span class="text-red-500">♥</span> 
+                usando Electron + Tailwind CSS
+            </p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./src/gui.js"></script>
+</body>
+</html>

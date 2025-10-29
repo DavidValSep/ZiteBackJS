@@ -7,7 +7,7 @@
     "start": "electron .",
     "build:css": "tailwindcss -i ./src/gui.css -o ./dist/gui.css --watch",
     "dev": "concurrently \"npm run build:css\" \"electron .\"",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "node test.js"
   },
   "keywords": [
     "web-scraping",

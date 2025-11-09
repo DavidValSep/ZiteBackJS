@@ -1,0 +1,6 @@
+#!/bin/bash
+# Y2Back v2.0.0 - Comando corto para Unix/Linux/macOS
+# Generado automáticamente por install-y2.js
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+node "$DIR/y2back.js" "$@"

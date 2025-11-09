@@ -1,0 +1,164 @@
+# =====================================================
+# Y2Back .gitignore v7.0.0
+# =====================================================
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.local
+.env.test
+.env.production
+.env.*.local
+
+# VS Code
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# Archivos temporales de Windows
+Thumbs.db
+Desktop.ini
+
+# Archivos temporales de macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# =====================================================
+# ARCHIVOS DE DESARROLLO Y TESTING
+# =====================================================
+
+# Scripts de limpieza (comentados por si se necesitan)
+# clean-project.ps1
+
+# Archivos de prueba y desarrollo
+# test-*.js
+# test_*.txt
+# *-test.*
+
+# Backups y versiones anteriores
+# *.backup
+# *.old
+# *-old.*
+
+# Archivos de configuración local
+# config.local.js
+# .env.local
+
+# =====================================================
+# MEDIOS - MANTENER ESTRUCTURA PERO NO CONTENIDO
+# =====================================================
+
+# Excluir carpetas completas de medios (archivos creados hoy)
+medios/Meta Info/
+medios/PlayList/
+medios/Subtitles/
+medios/Screenshots/
+
+# Contenido de medios (preservar estructura de carpetas)
+medios/Video/*.mp4
+medios/Video/*.webm
+medios/Video/*.mkv
+medios/Music/*.mp3
+medios/Music/*.m4a
+medios/Music/*.flac
+medios/Pics/*.jpg
+medios/Pics/*.webp
+medios/Pics/*.png
+
+# Archivos temporales y parciales de descargas (yt-dlp/ffmpeg)
+medios/**/*.part
+medios/**/*.part-*
+medios/**/*.ytdl
+medios/**/*.aria2
+medios/**/*.crdownload
+medios/**/*.tmp
+medios/**/*.temp
+medios/**/*.partial
+medios/**/*.info.json
+descarga_masiva.js
+
+# Salidas de build del frontend
+web/dist/
+
+# =====================================================
+# BINARIOS Y COMPILACIONES (EXCLUIR DE GIT)
+# =====================================================
+
+# Binarios ejecutables grandes (distribuir por separado)
+ffmpeg
+ffmpeg.exe
+ffmpeg_macos
+ffprobe
+ffprobe.exe
+ffprobe_macos
+yt-dlp
+yt-dlp.exe
+yt-dlp_macos
+
+# Compilaciones de Electron (distribuir por releases)
+dist/
+build/
+
+# Excepciones: Mantener archivos de Emilia
+!medios/**/*emilia*
+!medios/**/*Emilia*
+
+# =====================================================
+# VERSIONING Y METADATOS
+# =====================================================
+
+# Respaldos
+medios/Respaldos/
+ 
+# Carpeta de archivos analizados/marcados para eliminación
+ELIMINAR/
+
+# =====================================================
+# GLOBALES ADICIONALES (TEMPORALES/ARTIFACTOS)
+# =====================================================
+
+# Artefactos temporales globales
+*.part
+*.ytdl
+*.aria2
+*.crdownload
+*.tmp
+*.temp
+*.partial
+*.info.json

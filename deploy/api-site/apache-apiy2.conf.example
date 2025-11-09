@@ -1,0 +1,27 @@
+<VirtualHost *:80>
+    ServerName apiy2.susitio.cl
+    DocumentRoot /var/www/apiy2.susitio.cl/html
+
+    <Directory /var/www/apiy2.susitio.cl/html>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    # SPA: reescritura al index.html
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ /index.html [L]
+
+    # Proxy API
+    ProxyPreserveHost On
+    ProxyRequests Off
+    ProxyPass /api http://127.0.0.1:3000/api
+    ProxyPassReverse /api http://127.0.0.1:3000/api
+
+    # Opcional: CORS si expones a otros orígenes
+    # Header always set Access-Control-Allow-Origin "https://apiy2.susitio.cl"
+    # Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    # Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+</VirtualHost>

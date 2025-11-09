@@ -1,0 +1,18 @@
+[Unit]
+Description=Y2Back API Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/y2back
+ExecStart=/usr/bin/node api/server.js
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+# Configurar CORS segun hosting de la SPA (separado por comas)
+# Environment=CORS_ORIGINS=https://apiy2.susitio.cl,https://tu-hosting.com
+# Opcional: PORT (por defecto 3000)
+# Environment=PORT=3000
+
+[Install]
+WantedBy=multi-user.target

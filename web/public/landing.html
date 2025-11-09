@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Y2Back — Descarga y organiza contenido de YouTube</title>
+  <meta name="description" content="Y2Back: Rápido, simple y sin rodeos. Busca, previsualiza y descarga videos o audio de YouTube. Interfaz web y app de escritorio." />
+  <link rel="icon" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <style>
+    /* Variables de tema - Colores Corporativos Azules */
+    :root {
+      --theme-primary: #4f7cff;
+      --theme-secondary: #8B5CF6;
+      --theme-accent: #06B6D4;
+      --theme-bg: #FFFFFF;
+      --theme-card-bg: #F9FAFB;
+      --theme-text: #1F2937;
+      --theme-text-secondary: #6B7280;
+      --theme-border: #E5E7EB;
+    }
+
+    [data-theme="dark"] {
+      --theme-primary: #4f7cff;
+      --theme-secondary: #5a8dff;
+      --theme-accent: #4f7cff;
+      --theme-bg: #1a1d2e;
+      --theme-card-bg: #242838;
+      --theme-text: #e6e7ea;
+      --theme-text-secondary: #9aa0a6;
+      --theme-border: #343a52;
+      --accent: #4f7cff;
+    }
+
+    [data-theme="light"] {
+      --theme-bg: #f3f4f6;
+      --theme-card-bg: #ffffff;
+      --theme-text: #111827;
+      --theme-text-secondary: #6b7280;
+      --theme-border: #e5e7eb;
+      --accent: #4f7cff;
+      --ok: #16a34a;
+    }
+
+    :root, [data-theme] {
+      --bg: var(--theme-bg);
+      --card: var(--theme-card-bg);
+      --text: var(--theme-text);
+      --muted: var(--theme-text-secondary);
+      --accent: var(--theme-primary);
+      --border: var(--theme-border);
+    }
+    
+    :root {
+      --ok: #22c55e;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body { 
+      margin: 0; 
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; 
+      background: var(--bg); 
+      color: var(--text); 
+    }
+    
+    a { color: var(--text); text-decoration: none; }
+    a:hover { color: var(--accent); }
+    
+    .page { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    
+    .header { margin-bottom: 24px; }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .header-brand { display: flex; align-items: center; gap: 10px; min-height: 64px; }
+    .header-brand img { height: 100%; max-height: 128px; border-radius: 6px; object-fit: contain; }
+    .header-brand h1 { margin: 0; font-weight: 700; letter-spacing: 0.2px; }
+    .header-brand p { margin: 0; }
+    
+    .card { 
+      background: var(--card); 
+      border: 1px solid var(--border); 
+      border-radius: 12px; 
+      padding: 16px; 
+      margin-bottom: 16px;
+    }
+    
+    .card h2, .card h3 { color: var(--accent); margin: 0 0 12px; }
+    
+    .muted { color: var(--muted); }
+    .small { font-size: 12px; }
+    
+    .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; align-items: center; }
+    .hero h1 { margin: 0 0 8px; font-size: 32px; }
+    .hero p { margin: 0 0 16px; }
+    
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    
+    button, .btn { 
+      padding: 10px 14px; 
+      border-radius: 10px; 
+      border: 1px solid var(--border); 
+      background: var(--card); 
+      color: var(--text); 
+      cursor: pointer; 
+      transition: 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    button:hover, .btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+    
+    .btn-primary, .theme-button-primary { 
+      background: var(--accent); 
+      color: #fff; 
+      border: 1px solid var(--accent); 
+    }
+    
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+    .feature h3 { margin: 0 0 6px; }
+    
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    
+    .footer { 
+      margin-top: 48px; 
+      padding: 24px 16px; 
+      border-top: 1px solid var(--border); 
+      color: var(--muted); 
+      font-size: 12px; 
+      text-align: center; 
+    }
+    
+    .footer a { font-weight: 600; text-decoration: none; color: #cfcfcf; transition: color 0.2s ease; }
+    .footer a:hover { color: #fff; }
+    [data-theme="light"] .footer a { color: #c33; }
+    [data-theme="light"] .footer a:hover { color: #cc3; }
+    
+    .img-hero { width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+    .mt-24 { margin-top: 24px; }
+    .mt-6 { margin-top: 6px; }
+    
+    .theme-toggle-btn { 
+      padding: 8px 10px; 
+      border-radius: 10px; 
+      border: 1px solid var(--border); 
+      background: #1e293b; 
+      color: var(--text); 
+      cursor: pointer; 
+    }
+    
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-top">
+        <div class="header-brand">
+          <img src="/icon-192x192.png" alt="Y2Back" />
+          <div>
+            <h1>Así es Y2Back...</h1>
+            <p class="muted">Rápido, simple y sin rodeos — Tus contenidos, donde quieras y como quieras.</p>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button
+            id="themeToggle"
+            class="theme-toggle-btn"
+            title="Cambiar tema"
+            onclick="toggleTheme()"
+          >
+            🌙
+          </button>
+          <a class="btn btn-primary" href="/">Abrir Web App</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="card">
+        <h2>Descarga y organiza contenido de YouTube sin rodeos</h2>
+        <p class="muted">Busca, previsualiza y descarga videos o audio con un par de clics. Interfaz web rápida y app de escritorio portable para Windows, macOS y Linux.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="/">Usar en el navegador</a>
+          <a class="btn" href="#descargas">Descargar para escritorio</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/screenshot-app.png" alt="Captura de Y2Back" class="img-hero" onerror="this.style.display='none'" />
+        <p class="muted small" style="margin-top:8px;">Vista previa de la interfaz</p>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="card feature">
+        <h3>Previsualización rápida</h3>
+        <p class="muted">Abre el video en un lightbox para confirmar antes de descargar.</p>
+      </div>
+      <div class="card feature">
+        <h3>Multiformato</h3>
+        <p class="muted">Video (MP4/MKV/WebM) o audio (MP3/M4A/OPUS/OGG) a tu elección.</p>
+      </div>
+      <div class="card feature">
+        <h3>Playlists y lotes</h3>
+        <p class="muted">Selecciona varios resultados y lanza descargas por lote. ZIP global por job.</p>
+      </div>
+    </section>
+
+  <section id="descargas" class="mt-24">
+      <div class="card">
+        <h3>Descargar Y2Back para escritorio</h3>
+        <p class="muted">Aplicación portable multiplataforma. Incluye backend integrado para uso sin servidor.</p>
+        <div class="cta" style="margin-top:16px;">
+          <a class="btn btn-primary" href="/downloads/Y2Back-3.1.0-linux-x64.AppImage" download>
+            <span style="font-size:1.2em;">🐧</span> Linux (AppImage)
+          </a>
+          <a class="btn btn-primary" href="/downloads/Y2Back-3.1.0-mac-x64.dmg" download>
+            <span style="font-size:1.2em;">🍎</span> macOS (DMG)
+          </a>
+          <a class="btn btn-primary" href="/downloads/Y2Back-3.1.0-win-x64.exe" download>
+            <span style="font-size:1.2em;">🪟</span> Windows (Portable)
+          </a>
+        </div>
+        <p class="muted mt-6" style="font-size:0.9em;">
+          Versión 3.1.0 — Incluye yt-dlp y ffmpeg integrados. Sin instalación requerida.
+        </p>
+      </div>
+      
+      <div class="grid-2 mt-24">
+        <div class="card">
+          <h3>Código fuente</h3>
+          <p class="muted">Licencia GPL-3.0. Contribuye, reporta issues y sugiere mejoras.</p>
+          <div class="cta mt-6">
+            <a class="btn" href="https://github.com/DavidValSep/y2back" target="_blank" rel="noreferrer noopener">GitHub</a>
+            <a class="btn" href="https://github.com/DavidValSep/y2back/issues" target="_blank" rel="noreferrer noopener">Issues</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Soporte y comunidad</h3>
+          <p class="muted">¿Necesitas ayuda? Visita nuestro sitio oficial.</p>
+          <div class="cta mt-6">
+            <a class="btn" href="https://susitio.cl/" target="_blank" rel="noreferrer noopener">SuSitio.cl</a>
+            <a class="btn" href="mailto:davidvalsep@gmail.com">Contacto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>
+        Así es <a href="/landing.html" rel="noreferrer">Y2Back</a> v3.1.0 - Desarrollado por DavidValSep de <a href="https://susitio.cl/" target="_blank" rel="noreferrer noopener">SuSitio</a>
+      </span>
+      <div id="year" style="display:none;"></div>
+    </footer>
+  </div>
+  
+  <script>
+    // Theme toggle functionality
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      const btn = document.getElementById('themeToggle');
+      btn.textContent = newTheme === 'light' ? '☀️' : '🌙';
+    }
+    
+    // Load saved theme
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+    })();
+    
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

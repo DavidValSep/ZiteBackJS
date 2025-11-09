@@ -1,0 +1,212 @@
+{
+  "name": "y2back",
+  "version": "3.4.2",
+  "description": "Así es Y2Back - Rápido, simple y sin rodeos — Tus contenidos, donde quieras y como quieras.",
+  "main": "ELIMINAR/electron/main.js",
+  "bin": {
+    "y2": "./y2back.js",
+    "y2back": "./y2back.js",
+    "gui": "./gui.js"
+  },
+  "scripts": {
+    "start": "node y2back.js",
+    "gui": "node gui.js --start",
+    "gui:start": "node gui.js --start",
+  "electron:dev": "electron ELIMINAR/electron/main.js",
+    "video": "node y2back.js --video",
+    "music": "node y2back.js --music",
+    "pics": "node y2back.js --pics",
+    "subtitles": "node y2back.js --subtitles",
+    "screenshots": "node y2back.js --screenshots",
+    "playlist": "node y2back.js --playlist",
+    "help": "node y2back.js --help",
+    "version": "node y2back.js --version",
+    "author": "node y2back.js --author",
+    "install-y2": "node install-y2.js",
+    "check": "node --version && npm --version && echo 'Y2Back ready!'",
+    "test": "node y2back.js -v -u 'dQw4w9WgXcQ'",
+    "test-music": "node y2back.js -m -u 'dQw4w9WgXcQ'",
+    "test-pics": "node y2back.js -p -u 'dQw4w9WgXcQ'",
+    "test-subtitles": "node y2back.js -s -u 'dQw4w9WgXcQ'",
+    "test-screenshots": "node y2back.js -c -u 'dQw4w9WgXcQ'",
+    "clean": "rm -rf medios/* || rmdir /s medios 2>nul || echo 'Clean completed'",
+    "web:dev": "npm --prefix web run dev",
+    "web:build": "npm --prefix web run build",
+    "web:preview": "npm --prefix web run preview",
+    "api": "node api/server.js",
+    "build:win": "electron-builder --win portable",
+    "build:linux": "electron-builder --linux AppImage",
+    "build:mac": "electron-builder --mac dmg",
+    "build:all": "electron-builder -mwl"
+  },
+  "keywords": [
+    "youtube",
+    "backup",
+    "respaldo",
+    "video",
+    "images",
+    "imagenes",
+    "audio",
+    "playlist",
+    "downloader",
+    "yt-dlp",
+    "media",
+    "preservation",
+    "multimedia",
+    "ziteback",
+    "yoo2back"
+  ],
+  "author": {
+    "name": "DavidValSep",
+    "email": "davidvalsep@gmail.com",
+    "url": "https://susitio.cl"
+  },
+  "license": "GPL-3.0",
+  "homepage": "https://susitio.cl/y2back",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidvalsep/y2back"
+  },
+  "bugs": {
+    "url": "https://github.com/davidvalsep/y2back/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "axios": "^1.12.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "glightbox": "^3.3.1"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "funding": {
+    "type": "paypal",
+    "url": "https://paypal.me/davidvalsep"
+  },
+  "config": {
+    "ytdlp_path": "yt-dlp",
+    "default_video_quality": "720p",
+    "default_image_quality": "maxres",
+    "max_retries": 3,
+    "timeout": 300,
+    "create_backups": true,
+    "download_images": true
+  },
+  "capabilities": {
+    "modes": [
+      "backup",
+      "video",
+      "images",
+      "audio",
+      "playlist"
+    ],
+    "formats": {
+      "video": [
+        "mp4",
+        "webm",
+        "mkv"
+      ],
+      "audio": [
+        "mp3",
+        "m4a",
+        "webm"
+      ],
+      "images": [
+        "jpg",
+        "png",
+        "webp"
+      ],
+      "subtitles": [
+        "srt",
+        "vtt",
+        "ass"
+      ],
+      "backup": [
+        "json",
+        "txt",
+        "csv"
+      ]
+    },
+    "platforms": [
+      "youtube"
+    ]
+  },
+  "files": [
+    "y2back.js",
+    "gui.js",
+    "gui.cmd",
+    "gui.ps1",
+    "config.js",
+    "install-y2.js",
+    "ELIMINAR/electron/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "VER.md",
+    "TECHNICAL-SPECS.md",
+    "DevGuia.md"
+  ]
+  ,
+  "build": {
+    "appId": "cl.susitio.y2back",
+    "productName": "Y2Back",
+    "asar": true,
+    "files": [
+      "package.json",
+      "y2back.js",
+      "config.js",
+      "ELIMINAR/electron/**",
+      "api/**",
+      "web/dist/**",
+      "yt-dlp",
+      "ffmpeg",
+      "ffprobe"
+    ],
+    "extraResources": [
+      {
+        "from": "yt-dlp",
+        "to": "yt-dlp",
+        "filter": [ "**/*" ]
+      },
+      {
+        "from": "ffmpeg",
+        "to": "ffmpeg",
+        "filter": [ "**/*" ]
+      },
+      {
+        "from": "ffprobe",
+        "to": "ffprobe",
+        "filter": [ "**/*" ]
+      }
+    ],
+    "win": {
+      "target": ["portable"],
+      "artifactName": "${productName}-${version}-win-${arch}.${ext}"
+    },
+    "linux": {
+      "target": ["AppImage"],
+      "artifactName": "${productName}-${version}-linux-${arch}.${ext}"
+    },
+    "mac": {
+      "target": ["dmg"],
+      "artifactName": "${productName}-${version}-mac-${arch}.${ext}",
+      "category": "public.app-category.utilities"
+    }
+  }
+}

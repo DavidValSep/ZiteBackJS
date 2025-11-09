@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+# Guardrail: bloquea push directo a main a menos que se permita explícitamente
+# Permite push a otras ramas y tags. Para forzar, exporta ALLOW_MAIN_PUSH=1.
+
+REMOTE_NAME="$1"
+REMOTE_URL="$2"
+
+# Leer líneas de refs desde stdin: local_ref local_sha remote_ref remote_sha
+BLOCK=0
+while read -r LOCAL_REF LOCAL_SHA REMOTE_REF REMOTE_SHA; do
+  case "$REMOTE_REF" in
+    refs/heads/main|refs/heads/master)
+      if [ "${ALLOW_MAIN_PUSH}" = "1" ]; then
+        echo "⚠️  push a $REMOTE_REF permitido por ALLOW_MAIN_PUSH=1"
+      else
+        echo "⛔ Push bloqueado a $REMOTE_REF." >&2
+        echo "   Empuja una rama (feature/*) y abre Pull Request, o exporta ALLOW_MAIN_PUSH=1 para una excepción puntual." >&2
+        echo "   PowerShell (una vez): $env:ALLOW_MAIN_PUSH=\"1\"; git push origin main; Remove-Item Env:ALLOW_MAIN_PUSH" >&2
+        BLOCK=1
+      fi
+      ;;
+    refs/tags/*)
+      # Permitir tags
+      ;;
+    *)
+      # Otras ramas: permitir
+      ;;
+  esac
+done
+
+if [ "$BLOCK" -eq 1 ]; then
+  exit 1
+fi
+
+exit 0

@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+# Guardrail: exige un token explícito en el mensaje de commit para evitar commits accidentales/automáticos
+# Aprobado si el mensaje contiene [ok] (case-insensitive) o [human]
+# Uso: incluye [ok] en el título o cuerpo del commit.
+
+MSG_FILE="$1"
+if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
+  echo "commit-msg: no se pudo leer el archivo de mensaje" >&2
+  exit 1
+fi
+
+# Normalizar a minúsculas
+LC_ALL=C
+CONTENT=$(tr 'A-Z' 'a-z' < "$MSG_FILE")
+
+echo "$CONTENT" | grep -q "\[ok\]\|\[human\]"
+HAS_TOKEN=$?
+
+if [ "$HAS_TOKEN" -ne 0 ]; then
+  echo "✋ Commit bloqueado por policy: agrega el token [ok] o [human] en el mensaje." >&2
+  echo "   Ejemplo: git commit -m \"[ok] chore: actualiza README\"" >&2
+  echo "   (Esto evita commits automáticos no intencionales)" >&2
+  exit 1
+fi
+
+exit 0

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Shim wrapper for gui - prefer bundled node or local bin/node before system node
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+
+# Candidate node locations (checked in order)
+IFS=:
+for p in "$ROOT/node/bin/node" "$ROOT/bin/node" "$(command -v node 2>/dev/null || true)"; do
+  if [[ -n "$p" && -x "$p" ]]; then
+    NODE="$p"
+    break
+  fi
+done
+unset IFS
+
+if [[ -z "${NODE:-}" ]]; then
+  echo "Error: node no encontrado (busqué: $ROOT/node/bin/node, $ROOT/bin/node, PATH)" >&2
+  exit 1
+fi
+
+exec "$NODE" "$ROOT/gui.js" "$@"
